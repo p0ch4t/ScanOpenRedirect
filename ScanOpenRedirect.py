@@ -9,10 +9,13 @@ def validaciones(url, parametros_url, redirect_url, payload):
 	r = requests.get(url, params=params)
 	try:
 		if "pong" in r.text and r.headers['host-header'] == '8441280b0c35cbc1147f8ba998a563a7':
+			with open('vulnerable_open_redirect.txt', 'a') as archivo:
+				archivo.write(url+'?'+params+"\n")
 			print(url+'?'+params)
-		if "pfelilpe.com\u002Fping" in r.text:
-			with open('otros_posibles_dom_open_redirect.txt'):
-				print(url+'?'+params+" --> REVISAR")
+		if search("pfelilpe.com\\u002Fping", r.text):
+			with open('otros_posibles_dom_open_redirect.txt', 'a') as archivo:
+				archivo.write(url+'?'+params+" --> REVISAR\n")
+			print(url+'?'+params)
 		else:
 			return ""
 	except:
