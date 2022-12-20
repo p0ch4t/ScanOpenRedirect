@@ -42,7 +42,7 @@ if __name__ == '__main__':
     if args.cookies:
         cookies = args.cookies
     else:
-	cookies = ''
+        cookies = ''
     with open(file, 'r') as archivo:
         lista_urls = archivo.read().splitlines()
     scan_open_redirect(lista_urls)
