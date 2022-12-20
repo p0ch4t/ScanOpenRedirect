@@ -22,7 +22,7 @@ def validaciones(url, parametros_url, redirect_url, payload):
 		return ""
 
 def scan_open_redirect(lista_urls):
-	payloads = ['=https://pfelilpe.com/ping?', '=//pfelilpe.com/ping?', '=pfelilpe.com/ping','=\/\/pfelilpe.com/ping?', '=https:pfelilpe.com/ping?']
+	payloads = ['=https://pfelilpe.com/ping?', '=//pfelilpe.com/ping?', '=pfelilpe.com/ping?','=\/\/pfelilpe.com/ping?', '=https:pfelilpe.com/ping?']
 	for url in lista_urls:
 		try:
 			parametros_url = url.split('?')[1]
