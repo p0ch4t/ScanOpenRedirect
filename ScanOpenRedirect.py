@@ -6,7 +6,7 @@ import argparse
 
 def validaciones(url, parametros_url, redirect_url, payload):
 	params = sub(redirect_url, payload, parametros_url)
-	r = requests.get(url, params=params)
+	r = requests.get(url, params=params, headers={"User-Agent": "Firefox AppSec"})
 	try:
 		if "pong" in r.text and r.headers['host-header'] == '8441280b0c35cbc1147f8ba998a563a7':
 			with open('vulnerable_open_redirect.txt', 'a') as archivo:
