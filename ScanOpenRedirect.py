@@ -22,7 +22,16 @@ def validaciones(url, parametros_url, redirect_url, payload):
 		return ""
 
 def scan_open_redirect(lista_urls):
-	payloads = ['=https://pfelilpe.com/ping?', '=//pfelilpe.com/ping?', '=pfelilpe.com/ping?','=\/\/pfelilpe.com/ping?', '=https:pfelilpe.com/ping?', 'https://@pfelilpe.com/ping?', 'https://\@pfelilpe.com/ping?']
+	payloads = ['=https://pfelilpe.com/ping?', '=//pfelilpe.com/ping?', '=pfelilpe.com/ping?','=\/\/pfelilpe.com/ping?', '=https:pfelilpe.com/ping?', 'https://@pfelilpe.com/ping?', 'https://\@pfelilpe.com/ping?', 'https://\\.pfelilpe.com/ping?']
+	if args.domain:
+		domain = args.domain
+		bypass_payloads = [f'=https://{domain}@pfelilpe.com/ping?', 
+	      f'=https://{domain};@pfelilpe.com/ping?', 
+		  f'=https://{domain}.pfelilpe.com/ping?',
+		  f'=https://{domain}\@pfelilpe.com/ping?',
+		  f'=javascript://{domain}/%0apfelilpe.com/ping?',
+		  f'=https://pfelilpe.com\\.{domain}/../ping?']
+		payloads.extend(bypass_payloads)
 	for url in lista_urls:
 		try:
 			parametros_url = url.split('?')[1]
@@ -37,6 +46,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-f','--file', help="File with urls", required=True)
     parser.add_argument('-c', '--cookies', help="Cookies for requests. Ej: session_id=test123", required=False)
+    parser.add_argument('-d', '--domain', metavar='--whitelist-domain', help="Whitelist domain for requests. Ej: validdomain.com", required=False)
     args = parser.parse_args()
     file =  args.file
     if args.cookies:
